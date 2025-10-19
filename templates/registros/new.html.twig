@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Registros{% endblock %}
+
+{% block body %}
+    <h1>Create new Registros</h1>
+
+    {{ include('registros/_form.html.twig') }}
+
+    <a href="{{ path('app_registros_index') }}">back to list</a>
+{% endblock %}

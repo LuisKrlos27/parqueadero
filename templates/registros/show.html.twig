@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registros{% endblock %}
+
+{% block body %}
+    <h1>Registros</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ registro.id }}</td>
+            </tr>
+            <tr>
+                <th>Hora_entrada</th>
+                <td>{{ registro.horaEntrada ? registro.horaEntrada|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hora_salida</th>
+                <td>{{ registro.horaSalida ? registro.horaSalida|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Tiempo_total</th>
+                <td>{{ registro.tiempoTotal }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ registro.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_registros_index') }}">back to list</a>
+
+    <a href="{{ path('app_registros_edit', {'id': registro.id}) }}">edit</a>
+
+    {{ include('registros/_delete_form.html.twig') }}
+{% endblock %}

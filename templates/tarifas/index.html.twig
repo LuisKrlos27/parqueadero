@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarifas index{% endblock %}
+
+{% block body %}
+    <h1>Tarifas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Valor_hora</th>
+                <th>Valor_dia</th>
+                <th>Estado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tarifa in tarifas %}
+            <tr>
+                <td>{{ tarifa.id }}</td>
+                <td>{{ tarifa.valorHora }}</td>
+                <td>{{ tarifa.valorDia }}</td>
+                <td>{{ tarifa.estado ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_tarifas_show', {'id': tarifa.id}) }}">show</a>
+                    <a href="{{ path('app_tarifas_edit', {'id': tarifa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tarifas_new') }}">Create new</a>
+{% endblock %}

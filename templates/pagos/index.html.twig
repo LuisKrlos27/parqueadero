@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pagos index{% endblock %}
+
+{% block body %}
+    <h1>Pagos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Monto</th>
+                <th>Fecha_pago</th>
+                <th>Metodo_pago</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pago in pagos %}
+            <tr>
+                <td>{{ pago.id }}</td>
+                <td>{{ pago.monto }}</td>
+                <td>{{ pago.fechaPago ? pago.fechaPago|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ pago.metodoPago }}</td>
+                <td>
+                    <a href="{{ path('app_pagos_show', {'id': pago.id}) }}">show</a>
+                    <a href="{{ path('app_pagos_edit', {'id': pago.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pagos_new') }}">Create new</a>
+{% endblock %}
