@@ -2,6 +2,8 @@
 
 {% block title %}USUARIOS{% endblock %}
 
+
+
 {% block body %}
     <p class="text-center text-4xl font-black text-gray-900 dark:text-white">USUARIOS</p>
     <br>
@@ -33,7 +35,13 @@
                             {{ user.email }}
                         </td>
                         <td class = "px-6 py-4">
-                            {{ user.roles ? user.roles|json_encode : '' }}
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                Administrador
+                                {% elseif 'ROLE_USER' in user.roles %}
+                                    Usuario
+                                {% else %}
+                                    Desconocido
+                            {% endif %}
                         </td>
                         <td class = "px-6 py-4">
                             <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
